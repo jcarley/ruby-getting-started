@@ -26,6 +26,14 @@ A barebones Rails app used for showing how to setup docker
 ### start up docker
 
     docker-compose up web
-    open "http://$(docker-machine ip default):8080"
+
+### View in brower
+
+    open "http://$(docker-machine ip dev):8080"
+
+### Other docker-machine commands.
+
+    docker-machine stop dev
+    docker-machine start dev
 
 
