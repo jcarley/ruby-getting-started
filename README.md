@@ -20,7 +20,7 @@ A barebones Rails app used for showing how to setup docker
 
 ### clone this repo to your projects location.  probably also somewhere on external drive
 
-    cd ~/root/of/your/projects
+    cd /Volumes/USB30FD/root/of/your/projects
     git clone https://github.com/jcarley/ruby-getting-started
     cd ruby-getting-started
 
