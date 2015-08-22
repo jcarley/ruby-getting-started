@@ -1,64 +1,27 @@
 # ruby-getting-started
 
-A barebones Rails app, which can easily be deployed to Heroku.
+A barebones Rails app used for showing how to setup docker
 
-This application support the [Getting Started with Ruby on Heroku](https://devcenter.heroku.com/articles/getting-started-with-ruby) article - check it out.
+# Setting up your machine.  (Assumes using a Mac)
 
-## Running Locally
+brew update
+brew install go docker docker-machine
+brew cask install docker-compose
 
-Make sure you have Ruby installed.  Also, install the [Heroku Toolbelt](https://toolbelt.heroku.com/).
+# export the folder you want to store your docker vm and images to.
+export MACHINE_STORAGE_PATH=/Volumes/USB30FD
 
-```sh
-$ git clone git@github.com:heroku/ruby-getting-started.git
-$ cd ruby-getting-started
-$ bundle install
-$ bundle exec rake db:create db:migrate
-$ foreman start web
-```
+# create a new dev vm.  driver options here could be vmware or virtualbox.
+docker-machine create --driver vmwarefusion dev
+eval "$(docker-machine env dev)"
 
-Your app should now be running on [localhost:5000](http://localhost:5000/).
+# clone this repo to your projects location.  probably also somewhere on external drive
+cd ~/root/of/your/projects
+git clone https://github.com/jcarley/ruby-getting-started
+cd ruby-getting-started
 
-## Deploying to Heroku
+# start up docker
+docker-compose up web
+open "http://$(docker-machine ip default):8080"
 
-```sh
-$ heroku create
-$ git push heroku master
-$ heroku run rake db:migrate
-$ heroku open
-```
-
-## Docker
-
-The app can be run and tested using the [Heroku Docker CLI plugin](https://devcenter.heroku.com/articles/introduction-local-development-with-docker).
-
-Make sure the plugin is installed:
-
-    heroku plugins:install heroku-docker
-
-Configure Docker and Docker Compose:
-
-    heroku docker:init
-
-And run the app locally:
-
-    docker-compose up web
-
-The app will now be available on the Docker daemon IP on port 8080.
-
-To work with the local database and do migrations, you can open a shell:
-
-    docker-compose run shell
-    bundle exec rake db:migrate
-
-You can also use Docker to release to Heroku:
-
-    heroku create
-    heroku docker:release
-    heroku open
-
-## Documentation
-
-For more information about using Ruby on Heroku, see these Dev Center articles:
-
-- [Ruby on Heroku](https://devcenter.heroku.com/categories/ruby)
 
