@@ -5,6 +5,7 @@ A barebones Rails app used for showing how to setup docker
 ### Setting up your machine.  (Assumes using a Mac)
 
     brew update
+    brew install caskroom/cask/brew-cask
     brew install go docker docker-machine
     brew cask install docker-compose
 
